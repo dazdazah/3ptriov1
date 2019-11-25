@@ -163,12 +163,6 @@ export default function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar position="static" style={{ background: "#E83350" }}>
         <Toolbar>
-          <img
-            src="https://github.com/dazdazah/3ptriov1/blob/master/img/logo-3triptrio.png?raw=true"
-            alt="logo"
-            className={classes.logo}
-          />
-
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -177,9 +171,14 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            TripTrio
-          </Typography>
+
+          <img
+            src="https://github.com/dazdazah/3ptriov1/blob/master/img/nav-logo.png?raw=true"
+            alt="logo"
+            width="100"
+            className={classes.logo}
+          />
+
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
