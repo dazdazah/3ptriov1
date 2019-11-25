@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
   image: {
     backgroundImage:
-      "url(https://github.com/dazdazah/3ptriov1/blob/master/img/trio-banner1.png?raw=true)",
+      "url(https://github.com/dazdazah/3ptriov1/blob/master/img/banner-sidesign.png?raw=true)",
     backgroundRepeat: "no-repeat",
     backgroundColor: theme.palette.grey[50],
     backgroundSize: "cover",
@@ -92,6 +92,7 @@ export default function SignInSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              style={{ background: "#E83350" }}
             >
               Sign In
             </Button>

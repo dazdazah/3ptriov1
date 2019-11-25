@@ -10,7 +10,7 @@ class Routes extends React.Component {
   render() {
     return (
       <>
-        <Nav />
+        <SignInSide />
       </>
     );
   }
