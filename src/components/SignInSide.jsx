@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
   image: {
     backgroundImage:
-      "url(https://github.com/dazdazah/3ptriov1/blob/master/img/aranxa-esteve-130752-unsplash-logo.jpg?raw=true)",
+      "url(https://github.com/dazdazah/3ptriov1/blob/master/img/trio-banner3.jpg?raw=true)",
     backgroundRepeat: "no-repeat",
     backgroundColor: theme.palette.grey[50],
     backgroundSize: "cover",
