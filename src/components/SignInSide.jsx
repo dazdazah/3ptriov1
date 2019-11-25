@@ -11,6 +11,7 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
   image: {
     backgroundImage:
-      "url(https://github.com/dazdazah/3ptriov1/blob/master/img/trio-banner3.jpg?raw=true)",
+      "url(https://github.com/dazdazah/3ptriov1/blob/master/img/trio-banner1.png?raw=true)",
     backgroundRepeat: "no-repeat",
     backgroundColor: theme.palette.grey[50],
     backgroundSize: "cover",
@@ -52,12 +53,9 @@ export default function SignInSide() {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <div
-            className="avatar"
-            style={{
-              backgroundImage: `url('https://randomuser.me/api/portraits/women/3.jpg')`
-            }}
-          ></div>
+          <Avatar className={classes.green}>
+            <AccountCircleRoundedIcon />
+          </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
