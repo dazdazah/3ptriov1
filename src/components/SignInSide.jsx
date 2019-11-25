@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
   image: {
     backgroundImage:
-      "url(https://github.com/dazdazah/dazdazah.github.io/blob/master/homework/TriptrioV3/img/aranxa-esteve-130752-unsplash-2.jpg?raw=true)",
+      "url(https://github.com/dazdazah/3ptriov1/blob/master/img/aranxa-esteve-130752-unsplash-logo.jpg?raw=true)",
     backgroundRepeat: "no-repeat",
     backgroundColor: theme.palette.grey[50],
     backgroundSize: "cover",
@@ -52,7 +52,12 @@ export default function SignInSide() {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}></Avatar>
+          <div
+            className="avatar"
+            style={{
+              backgroundImage: `url('https://randomuser.me/api/portraits/women/3.jpg')`
+            }}
+          ></div>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
