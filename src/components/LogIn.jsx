@@ -1,25 +1,27 @@
 import React from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Grid,
+  Box,
+  Typography,
+  Container
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
     body: {
       backgroundImage:
-        "url(https://github.com/dazdazah/3ptriov1/blob/master/img/snow-adventure.jpg?raw=true)",
+        "url(https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80)",
       backgroundRepeat: "no-repeat",
-      backgroundColor: theme.palette.grey[100],
+
       backgroundSize: "cover",
       backgroundPosition: "center"
     }
@@ -39,7 +41,8 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(4),
     backgroundColor: theme.palette.secondary.main,
     padding: theme.spacing(3),
-    borderRadius: 10
+    borderRadius: 10,
+    textAlign: "center"
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
@@ -56,17 +59,16 @@ export default function SignUp() {
         <form
           className={classes.form}
           noValidate
-          style={{ background: "white" }}
+          style={{ backgroundColor: "rgba(255, 255, 255, 0.90)" }}
         >
           <img
-            src="https://github.com/dazdazah/3ptriov1/blob/master/img/nav-logo.png?raw=true"
+            src="https://github.com/dazdazah/3ptriov1/blob/master/img/logo-login.png?raw=true"
             alt="logo"
-            width="100"
+            width="150"
+            padding="30"
             className={classes.logo}
           />
-          <Typography component="h1" variant="h5">
-            Log in
-          </Typography>
+
           <TextField
             variant="outlined"
             margin="normal"
