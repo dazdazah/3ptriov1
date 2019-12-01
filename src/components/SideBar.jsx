@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  makeStyles,
+  withStyles,
   Drawer,
   AppBar,
   CssBaseline,
@@ -19,14 +19,11 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import HourglassEmptyIcon from "@material-ui/icons/HourglassEmpty";
 import AddIcon from "@material-ui/icons/Add";
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = theme => ({
   root: {
     display: "flex"
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1
   },
   drawer: {
     width: drawerWidth,
@@ -35,90 +32,90 @@ const useStyles = makeStyles(theme => ({
   drawerPaper: {
     width: drawerWidth
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3)
-  },
   toolbar: theme.mixins.toolbar
-}));
+});
 
-export default function ClippedDrawer() {
-  const classes = useStyles();
+const classes = withStyles();
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
+class SideBar extends React.Component {
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
 
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        <div className={classes.toolbar} />
-        <Divider />
-        <List>
-          {["Post a Trip"].map(text => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                <AddIcon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["Location"].map(text => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                <LocationOnIcon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
+        <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper
+          }}
+        >
+          <div className={classes.toolbar} />
+          <Divider />
+          <List>
+            {["Post a Trip"].map(text => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  <AddIcon />
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {["Location"].map(text => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  <LocationOnIcon />
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {["Budget (low to high)"].map(text => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  <AttachMoneyIcon />
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
 
-        <List>
-          {["Budget (low to high)"].map(text => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                <AttachMoneyIcon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
+          <List>
+            {["Duration"].map(text => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  <HourglassEmptyIcon />
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
 
-        <List>
-          {["Duration"].map(text => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                <HourglassEmptyIcon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
+          <List>
+            {["Type"].map(text => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  <LandscapeIcon />
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
 
-        <List>
-          {["Type"].map(text => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                <LandscapeIcon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-
-        <Divider />
-      </Drawer>
-    </div>
-  );
+          <Divider />
+        </Drawer>
+      </div>
+    );
+  }
 }
+
+export default withStyles(useStyles)(SideBar);

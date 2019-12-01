@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import { spacing } from "@material-ui/system";
 import {
   Drawer,
@@ -10,13 +10,15 @@ import {
   Typography,
   List
 } from "@material-ui/core";
-import Avatar from "./Avatar.jsx";
+import CardAvatar from "./CardAvatar.jsx";
 import Nav from "./Nav.jsx";
 import Cards from "./Cards.jsx";
 import SideBar from "./SideBar.jsx";
+import Trip from "./Trip.jsx";
+import axios from "axios";
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = theme => ({
   root: {
     display: "flex"
   },
@@ -35,47 +37,69 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3)
   },
   toolbar: theme.mixins.toolbar
-}));
+});
 
-export default function ClippedDrawer() {
-  const classes = useStyles();
+const classes = withStyles();
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
+class Trips extends React.Component {
+  state = {
+    trips: [],
+    users: []
+  };
 
-      <AppBar position="fixed" className={classes.appBar}>
-        <Nav />
-      </AppBar>
+  componentWillMount() {
+    axios
+      .get(`http://localhost:4000/trips`)
+      .then(res => {
+        console.log({ trips: res.data });
+        this.setState({ trips: res.data });
+      })
+      .catch(err => console.log({ err }));
 
-      <SideBar />
-
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Typography>
-          <h3>Join other trips</h3>
-        </Typography>
-
-        <Box display="flex">
-          <Box m={1}>
-            <Cards />
+    axios
+      .get(`http://localhost:4000/users`)
+      .then(response => {
+        this.setState({ users: response.data });
+      })
+      .catch(error => {
+        console.log({ error });
+      });
+  }
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <AppBar position="fixed" className={classes.appBar}>
+          <Nav />
+        </AppBar>
+        <SideBar />
+        // content cards
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Typography>
+            <h3>Join other trips</h3>
+          </Typography>
+          <Box>
+            <Box display="flex" m={2}>
+              {this.state.trips.map(trip => (
+                <Cards trip={trip} key={trip._id} />
+              ))}
+            </Box>
           </Box>
-          <Box m={1}>
-            <Cards />
+          <Typography>
+            <h3>People who are interested to join you</h3>
+          </Typography>
+          <Box>
+            <Box display="flex" m={2}>
+              {this.state.users.map(user => (
+                <CardAvatar user={user} key={user._id} />
+              ))}
+            </Box>
           </Box>
-        </Box>
-      </main>
-
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <h3>People who are interested to join you</h3>
-        <List>
-          <Avatar />
-        </List>
-        <List>
-          <Avatar />
-        </List>
-      </main>
-    </div>
-  );
+        </main>
+      </div>
+    );
+  }
 }
+
+export default withStyles(useStyles)(Trips);

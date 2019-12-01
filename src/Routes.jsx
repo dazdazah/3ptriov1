@@ -5,9 +5,10 @@ import LogIn from "./components/LogIn.jsx";
 import SignUpInSide from "./components/SignUpInSide.jsx";
 import Nav from "./components/Nav.jsx";
 import Cards from "./components/Cards.jsx";
-import Trip from "./components/Trip.jsx";
-import Avatar from "./components/Avatar.jsx";
+import CardAvatar from "./components/CardAvatar.jsx";
 import Profile from "./components/Profile.jsx";
+import Trip from "./components/Trip.jsx";
+
 import Trips from "./components/Trips.jsx";
 import CreatePostTrip from "./components/CreatePostTrip.jsx";
 
@@ -19,11 +20,11 @@ class Routes extends React.Component {
           <Switch>
             <Route path="/SignUpInSide/" component={SignUpInSide} />
             <Route path="/CreatePostTrip/" component={CreatePostTrip} />
-            <Route path="/Avatar/" component={Avatar} />
+            <Route path="/CardAvatar/" component={CardAvatar} />
             <Route path="/Profile/" component={Profile} />
-            <Route path="/Trip" component={Trip} />
+            <Route path="/trips" component={Trips} />
+            <Route path="/Trip:id" component={Trip} />
             <Route path="/LogIn" component={LogIn} />
-            <Route path="/Trips" component={Trips} />
             <Route path="/" component={SignUpInSide} />
           </Switch>
         </BrowserRouter>

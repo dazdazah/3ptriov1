@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import {
   AppBar,
   CssBaseline,
@@ -13,7 +13,7 @@ import Nav from "./Nav.jsx";
 import Cards from "./Cards.jsx";
 import SideBar from "./SideBar.jsx";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap"
@@ -34,85 +34,93 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3)
   },
   toolbar: theme.mixins.toolbar
-}));
+});
 
-export default function ClippedDrawer() {
-  const classes = useStyles();
+// export default function ClippedDrawer() {
+//   const classes = useStyles();
+//
+//
+// 	const classes = withStyles();
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <Nav />
-      </AppBar>
-      <SideBar />
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
+class CreatePostTrip extends React.Component {
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar position="fixed" className={classes.appBar}>
+          <Nav />
+        </AppBar>
+        <SideBar />
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
 
-        <Typography component="h1" variant="h5" style={{ margin: 8 }}>
-          Tell Us About Your Trip
-        </Typography>
+          <Typography component="h1" variant="h5" style={{ margin: 8 }}>
+            Tell Us About Your Trip
+          </Typography>
 
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="outlined-full-width"
-            label="Title"
-            style={{ margin: 8 }}
-            placeholder="Name Your Trip"
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true
-            }}
-            variant="outlined"
-          />
-        </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              id="outlined-full-width"
+              label="Title"
+              style={{ margin: 8 }}
+              placeholder="Name Your Trip"
+              fullWidth
+              margin="normal"
+              InputLabelProps={{
+                shrink: true
+              }}
+              variant="outlined"
+            />
+          </Grid>
 
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="outlined-full-width"
-            label="Description"
-            style={{ margin: 8 }}
-            placeholder="Tell us about this trip"
-            multiline
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true
-            }}
-            variant="outlined"
-          />
-        </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              id="outlined-full-width"
+              label="Description"
+              style={{ margin: 8 }}
+              placeholder="Tell us about this trip"
+              multiline
+              fullWidth
+              margin="normal"
+              InputLabelProps={{
+                shrink: true
+              }}
+              variant="outlined"
+            />
+          </Grid>
 
-        <Grid item xs={12} sm={6}>
-          <TextField
-            label="Picture of Your Destination"
-            style={{ margin: 8 }}
-            placeholder="Upload Picture of Your Destination"
-            variant="outlined"
-            required
-            fullWidth
-            name="Upload Picture"
-            type="file"
-            id="file"
-            InputLabelProps={{
-              shrink: true
-            }}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} style={{ margin: 8 }}>
-          <Button
-            size="large"
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            style={{ background: "#E83350" }}
-          >
-            Post
-          </Button>
-        </Grid>
-      </main>
-    </div>
-  );
+          <Grid item xs={12} sm={6}>
+            <TextField
+              label="Picture of Your Destination"
+              style={{ margin: 8 }}
+              placeholder="Upload Picture of Your Destination"
+              variant="outlined"
+              required
+              fullWidth
+              name="Upload Picture"
+              type="file"
+              id="file"
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} style={{ margin: 8 }}>
+            <Button
+              size="large"
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              style={{ background: "#E83350" }}
+            >
+              Post
+            </Button>
+          </Grid>
+        </main>
+      </div>
+    );
+  }
 }
+export default withStyles(useStyles)(CreatePostTrip);
