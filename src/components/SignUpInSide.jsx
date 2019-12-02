@@ -14,6 +14,7 @@ import {
   Grid,
   Typography
 } from "@material-ui/core";
+import axios from "axios";
 
 const useStyles = theme => ({
   root: {
@@ -48,6 +49,68 @@ const useStyles = theme => ({
 
 const classes = withStyles();
 class SignUpInSide extends React.Component {
+  state = {
+    user: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      description: "",
+      avatar: ""
+    }
+  };
+
+  changevalueFirstName = e => {
+    this.setState({ firstName: e.target.value });
+  };
+  changevalueLastName = e => {
+    this.setState({ lastName: e.target.value });
+  };
+  changevalueEmail = e => {
+    this.setState({ password: e.target.value });
+  };
+  changevaluePassword = e => {
+    this.setState({ email: e.target.value });
+  };
+  changevalueDescription = e => {
+    this.setState({ description: e.target.value });
+  };
+  changevalueAvatar = e => {
+    this.setState({ avatar: e.target.value });
+  };
+
+  signup = e => {
+    e.preventDefault();
+    console.log("about to signup");
+    let data = new FormData();
+
+    for (let key in this.state) {
+      data.append(key, this.state[key]);
+    }
+    if (this.state.password) {
+      axios
+        .post(`${process.env.REACT_APP_API}/signup`, data)
+        .then(res => {
+          if (res.data) {
+            console.log("yay");
+            localStorage.setItem("token", res.data);
+            this.props.history.push("/");
+          } else {
+            console.log("nay");
+          }
+        })
+        .catch(err => console.log({ err }));
+    } else {
+      alert("Yo! you need password");
+    }
+  };
+
+  addFile = e => {
+    let user = this.state;
+    user.file = e.target.files[0];
+    this.setState({ user });
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -59,10 +122,15 @@ class SignUpInSide extends React.Component {
             <Typography component="h1" variant="h5">
               Sign up
             </Typography>
-            <form className={classes.form} noValidate>
+            <form
+              className={classes.form}
+              noValidate
+              onSubmit={e => this.signup(e)}
+            >
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
+                    onChange={e => this.changevalueFirstName(e)}
                     autoComplete="fname"
                     name="firstName"
                     variant="outlined"
@@ -75,6 +143,7 @@ class SignUpInSide extends React.Component {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
+                    onChange={e => this.changevalueLastName(e)}
                     variant="outlined"
                     required
                     fullWidth
@@ -86,6 +155,7 @@ class SignUpInSide extends React.Component {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                    onChange={e => this.changevalueEmail(e)}
                     variant="outlined"
                     required
                     fullWidth
@@ -97,6 +167,7 @@ class SignUpInSide extends React.Component {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                    onChange={e => this.changevaluePassword(e)}
                     variant="outlined"
                     required
                     fullWidth
@@ -109,6 +180,7 @@ class SignUpInSide extends React.Component {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                    onChange={e => this.changevalueDescription(e)}
                     variant="outlined"
                     required
                     fullWidth
@@ -123,21 +195,13 @@ class SignUpInSide extends React.Component {
 
                 <Grid item xs={12}>
                   <TextField
+                    onChange={e => this.changevalueAvatar(e)}
                     variant="outlined"
                     required
                     fullWidth
                     name="Upload Picture"
                     type="file"
                     id="file"
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox value="allowExtraEmails" color="primary" />
-                    }
-                    label="I want to receive inspiration, marketing promotions and updates via email."
                   />
                 </Grid>
               </Grid>
@@ -154,7 +218,7 @@ class SignUpInSide extends React.Component {
               </Button>
               <Grid container justify="flex-end">
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="/login" variant="body2">
                     Already have an account? Sign in
                   </Link>
                 </Grid>

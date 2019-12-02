@@ -16,7 +16,6 @@ import Cards from "./Cards.jsx";
 import SideBar from "./SideBar.jsx";
 import Trip from "./Trip.jsx";
 import axios from "axios";
-const drawerWidth = 240;
 
 const useStyles = theme => ({
   root: {
@@ -25,13 +24,7 @@ const useStyles = theme => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1
   },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0
-  },
-  drawerPaper: {
-    width: drawerWidth
-  },
+
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)
