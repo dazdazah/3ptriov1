@@ -3,18 +3,15 @@ import { withStyles } from "@material-ui/core/styles";
 import {
   Paper,
   Grid,
-  Box,
-  Typography,
-  Avatar,
   Button,
-  Drawer,
   AppBar,
-  Toolbar
+  CardContent,
+  Typography,
+  CardMedia
 } from "@material-ui/core";
-import { spacing } from "@material-ui/system";
+import axios from "axios";
 import Nav from "./Nav.jsx";
 import SideBar from "./SideBar.jsx";
-import axios from "axios";
 
 const drawerWidth = 240;
 const useStyles = theme => ({
@@ -38,9 +35,23 @@ const useStyles = theme => ({
   toolbar: theme.mixins.toolbar
 });
 
-const classes = withStyles();
-
 class Trip extends React.Component {
+  state = {
+    trip: []
+  };
+  componentWillMount() {
+    console.log(
+      "route",
+      `${process.env.REACT_APP_API}/trip/${this.props.match.params.id}`
+    );
+    axios
+      .get(`${process.env.REACT_APP_API}/trip/${this.props.match.params.id}`)
+      .then(res => {
+        console.log({ trip: res.data });
+        this.setState({ trip: res.data });
+      })
+      .catch(err => console.log({ err }));
+  }
   render() {
     const { classes } = this.props;
     return (
@@ -53,31 +64,22 @@ class Trip extends React.Component {
           <Grid>
             <main className={classes.content}>
               <div className={classes.toolbar} />
-              <img
-                src="https://www.traveller.com.au/content/dam/images/1/0/g/g/1/c/image.related.articleLeadwide.620x349.10gduw.png/1415744015369.jpg"
-                width="600"
+              <img src={this.state.trip.picture} />
+              <CardMedia
+                className={classes.media}
+                image={this.state.trip.picture}
               />
             </main>
+
             <main className={classes.content}>
-              <Typography>
-                <h1> Flying Solo</h1>
-                I’ll be in Krabi Next weekend solo! I’ve got an Airbnb in the
-                town and am planning to do Island Tour, and other typical beach
-                and food stuff. Experienced solo traveler that stumbled across
-                this and figured I’d see if anyone might be in the area to go
-                see the caves or eat many many Pad Thai. Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit. Nam semper quis turpis sit
-                amet interdum. Vivamus sit amet ex ac urna lacinia luctus.
-                Integer tempor arcu vel interdum ultricies. Phasellus ornare
-                lacus at tellus consectetur, sed laoreet nibh dignissim.
-                Maecenas vitae neque dignissim, sagittis neque vel, varius
-                risus. Duis luctus justo elit, nec sollicitudin odio luctus eu.
-                Mauris bibendum mi in faucibus viverra. Sed ut nulla vitae odio
-                luctus egestas. Integer convallis risus sit amet magna porttitor
-                sagittis. Morbi quis posuere arcu. Donec egestas nisi magna, et
-                iaculis justo porta eget. Nam aliquet lectus nunc, quis
-                consectetur sem bibendum cursus.
-              </Typography>
+              <CardContent>
+                <Typography>
+                  <h1>{this.state.trip.title}</h1>
+                </Typography>
+              </CardContent>
+              <CardContent>
+                <Typography>{this.state.trip.description}</Typography>
+              </CardContent>
               <div className={classes.toolbar} />
               <Button
                 size="large"

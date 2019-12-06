@@ -1,13 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import {
   Paper,
   Grid,
-  TextField,
   Box,
   Typography,
   Avatar,
-  Button
+  Button,
+  IconButton
 } from "@material-ui/core";
 
 const useStyles = theme => ({
@@ -20,8 +21,6 @@ const useStyles = theme => ({
     maxWidth: 350
   }
 });
-
-const classes = withStyles();
 
 class CardAvatar extends React.Component {
   state = {
@@ -43,18 +42,21 @@ class CardAvatar extends React.Component {
               {this.state.users.firstName} wants to join you
             </Typography>
           </Box>
-          <Box component="span" mt={5}>
-            <Button
-              size="small"
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              style={{ background: "#E83350" }}
-            >
-              Connect
-            </Button>
-          </Box>
+
+          <Link className="card link" to={`/user/${this.state.users._id}`}>
+            <Box component="span" mt={5}>
+              <Button
+                size="small"
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                style={{ background: "#E83350" }}
+              >
+                See Profile
+              </Button>
+            </Box>
+          </Link>
         </Grid>
       </Paper>
     );

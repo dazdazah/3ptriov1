@@ -1,6 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
 import {
   Card,
   CardHeader,
@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import CardTravelIcon from "@material-ui/icons/CardTravel";
+import axios from "axios";
 
 const useStyles = theme => ({
   card: {
@@ -25,12 +26,27 @@ const useStyles = theme => ({
   }
 });
 
-const classes = withStyles();
-
 class Cards extends React.Component {
   state = {
-    trip: this.props.trip
+    trip: this.props.trip,
+    users: ""
   };
+
+  componentWillMount() {
+    console.log("nav mounted");
+    let token = localStorage.getItem("token");
+    axios
+      .get(`${process.env.REACT_APP_API}/me`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+      })
+      .then(response => {
+        this.setState({ users: response.data });
+        console.log({ response });
+      })
+      .catch(error => {
+        console.log({ error });
+      });
+  }
 
   render() {
     const { classes } = this.props;
@@ -40,7 +56,7 @@ class Cards extends React.Component {
           avatar={
             <Avatar
               alt="Remy Sharp"
-              src="https://avatars2.githubusercontent.com/u/11773475?s=460&v=4"
+              src={this.state.trip.leader.avatar}
               className={classes.bigAvatar}
             />
           }
@@ -62,10 +78,13 @@ class Cards extends React.Component {
             <FavoriteIcon />
             <Typography>Interested</Typography>
           </IconButton>
-          <IconButton aria-label="share">
-            <CardTravelIcon />
-            <Typography>Trip Details</Typography>
-          </IconButton>
+
+          <Link className="card link" to={`/trip/${this.state.trip._id}`}>
+            <IconButton>
+              <CardTravelIcon />
+              <Typography>Trip Details</Typography>
+            </IconButton>
+          </Link>
         </CardActions>
       </Card>
     );

@@ -2,15 +2,13 @@ import React from "react";
 import {
   withStyles,
   Drawer,
-  AppBar,
   CssBaseline,
-  Toolbar,
   List,
-  Typography,
   Divider,
   ListItem,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  Link
 } from "@material-ui/core";
 
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
@@ -35,8 +33,6 @@ const useStyles = theme => ({
   toolbar: theme.mixins.toolbar
 });
 
-const classes = withStyles();
-
 class SideBar extends React.Component {
   render() {
     const { classes } = this.props;
@@ -53,16 +49,19 @@ class SideBar extends React.Component {
         >
           <div className={classes.toolbar} />
           <Divider />
-          <List>
-            {["Post a Trip"].map(text => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  <AddIcon />
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
+          <Link href="/CreatePostTrip">
+            <List>
+              {["Post a Trip"].map(text => (
+                <ListItem button key={text}>
+                  <ListItemIcon>
+                    <AddIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              ))}
+            </List>
+          </Link>
+
           <Divider />
           <List>
             {["Location"].map(text => (

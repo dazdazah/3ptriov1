@@ -5,20 +5,19 @@ import {
   Grid,
   Box,
   Typography,
+  CardContent,
   Avatar,
   Button,
-  Drawer,
-  AppBar,
-  Toolbar
+  AppBar
 } from "@material-ui/core";
-import { spacing } from "@material-ui/system";
+import axios from "axios";
 import Nav from "./Nav.jsx";
 import SideBar from "./SideBar.jsx";
-import axios from "axios";
 
 const useStyles = theme => ({
   root: {
-    padding: theme.spacing(2, 3)
+    padding: theme.spacing(2, 3),
+    display: "flex"
   },
   avatar: {
     margin: theme.spacing(2, 1),
@@ -28,18 +27,30 @@ const useStyles = theme => ({
     flexGrow: 1,
     padding: theme.spacing(2)
   },
-  root: {
-    display: "flex"
-  },
   appBar: {
     zIndex: theme.zIndex.drawer + 1
   },
   toolbar: theme.mixins.toolbar
 });
 
-const classes = withStyles();
-
 class Profile extends React.Component {
+  state = {
+    user: []
+  };
+  componentWillMount() {
+    console.log(
+      "route",
+      `${process.env.REACT_APP_API}/user/${this.props.match.params.id}`
+    );
+    axios
+      .get(`${process.env.REACT_APP_API}/user/${this.props.match.params.id}`)
+      .then(res => {
+        console.log({ user: res.data });
+        this.setState({ user: res.data });
+      })
+      .catch(err => console.log({ err }));
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -56,35 +67,19 @@ class Profile extends React.Component {
                 <Box display="flex">
                   <Avatar
                     alt="profile"
-                    src="https://randomuser.me/api/portraits/women/8.jpg"
+                    src={this.state.user.avatar}
                     style={{ height: 200, width: 200, marginWidth: 50 }}
                   ></Avatar>
+
                   <Box ml={2}>
-                    <Typography ml={2}>
-                      <h1>Carol Lin</h1>
-                    </Typography>
+                    <Typography>{this.state.user.firstName}</Typography>
                   </Box>
                 </Box>
               </main>
               <main className={classes.content}>
-                <Typography>
-                  Carol is a passionate instructor who believes yoga and breath
-                  can change someone's life. She credits her first yoga class as
-                  one of the best things that ever happened to her. Yoga has
-                  given her the tools to get out of her head and thrive in the
-                  present moment. In 2012 she decided to take her 200 hour YTT
-                  so she could not only deepen her practice but share it with
-                  others. Her classes have a theme of connecting breath and
-                  movement, presence and the unfolding of possibilities in every
-                  moment. Having deep rooted values in the importance of
-                  community, Ayla is so excited to create this magical
-                  experience of bringing people together. I am a Yoga Alliace
-                  Experienced Registered Yoga Teacher with more than 1,000
-                  teaching hours and over 300 credit hours of education. I teach
-                  yoga full time and as a continuing education provider. I've
-                  been on several yoga retreats all over the world and I'm
-                  looking forward to leading my own!
-                </Typography>
+                <CardContent>
+                  <Typography>{this.state.user.description}</Typography>
+                </CardContent>
               </main>
               <main className={classes.content}>
                 <Button

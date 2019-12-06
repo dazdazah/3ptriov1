@@ -5,12 +5,15 @@ import {
   Toolbar,
   Typography,
   Button,
-  IconButton
+  IconButton,
+  Avatar,
+  Link
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import InputBase from "@material-ui/core/InputBase";
 import { fade } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
+import axios from "axios";
 
 const useStyles = theme => ({
   root: {
@@ -29,7 +32,7 @@ const useStyles = theme => ({
     "&:hover": {
       backgroundColor: fade(theme.palette.common.white, 0.25)
     },
-    marginLeft: 0,
+    margin: "2",
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(1),
@@ -61,9 +64,37 @@ const useStyles = theme => ({
   }
 });
 
-const classes = withStyles();
-
 class Nav extends React.Component {
+  // state = {
+  //   users: this.props.user
+  // };
+
+  state = {
+    users: ""
+  };
+  componentWillMount() {
+    console.log("nav mounted");
+    let token = localStorage.getItem("token");
+    axios
+      .get(`${process.env.REACT_APP_API}/me`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+      })
+      .then(response => {
+        this.setState({ users: response.data });
+        console.log({ response });
+      })
+      .catch(error => {
+        console.log({ error });
+      });
+  }
+
+  logOut = e => {
+    console.log(this.props);
+    e.preventDefault();
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -78,17 +109,18 @@ class Nav extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-
             <Typography variant="h6" className={classes.title}>
-              <img
-                src="https://github.com/dazdazah/3ptriov1/blob/master/img/nav-logo.png?raw=true"
-                alt="logo"
-                width="100"
-                className={classes.logo}
-              />
+              <Link href="/trips">
+                <img
+                  src="https://github.com/dazdazah/3ptriov1/blob/master/img/nav-logo.png?raw=true"
+                  alt="logo"
+                  width="100"
+                  className={classes.logo}
+                />
+              </Link>
             </Typography>
             <div className={classes.search}>
-              <div className={classes.searchIcon}>
+              <div className={classes.searchIcon} style={{ margin: "10" }}>
                 <SearchIcon />
               </div>
               <InputBase
@@ -100,7 +132,11 @@ class Nav extends React.Component {
                 inputProps={{ "aria-label": "search" }}
               />
             </div>
-            <Button color="inherit">Sign out</Button>
+            <Avatar alt="profile" src={this.state.users.avatar}></Avatar>
+
+            <Button color="inherit" onClick={e => this.logOut(e)}>
+              Sign out
+            </Button>
           </Toolbar>
         </AppBar>
       </div>

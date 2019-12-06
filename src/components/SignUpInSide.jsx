@@ -1,16 +1,10 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import {
-  Avatar,
   Button,
-  CssBaseline,
   TextField,
-  Select,
-  FormControlLabel,
-  Checkbox,
   Link,
   Paper,
-  Box,
   Grid,
   Typography
 } from "@material-ui/core";
@@ -47,7 +41,6 @@ const useStyles = theme => ({
   }
 });
 
-const classes = withStyles();
 class SignUpInSide extends React.Component {
   state = {
     user: {
@@ -67,10 +60,10 @@ class SignUpInSide extends React.Component {
     this.setState({ lastName: e.target.value });
   };
   changevalueEmail = e => {
-    this.setState({ password: e.target.value });
+    this.setState({ email: e.target.value });
   };
   changevaluePassword = e => {
-    this.setState({ email: e.target.value });
+    this.setState({ password: e.target.value });
   };
   changevalueDescription = e => {
     this.setState({ description: e.target.value });
@@ -89,7 +82,7 @@ class SignUpInSide extends React.Component {
     }
     if (this.state.password) {
       axios
-        .post(`${process.env.REACT_APP_API}/signup`, data)
+        .post(`http://localhost:4000/Signup`, data)
         .then(res => {
           if (res.data) {
             console.log("yay");
@@ -115,13 +108,14 @@ class SignUpInSide extends React.Component {
     const { classes } = this.props;
     return (
       <Grid container component="main" className={classes.root}>
-        <CssBaseline />
         <Grid item xs={false} sm={4} md={7} className={classes.image} />
+
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <div className={classes.paper}>
             <Typography component="h1" variant="h5">
               Sign up
             </Typography>
+
             <form
               className={classes.form}
               noValidate
@@ -130,7 +124,6 @@ class SignUpInSide extends React.Component {
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
-                    onChange={e => this.changevalueFirstName(e)}
                     autoComplete="fname"
                     name="firstName"
                     variant="outlined"
@@ -139,11 +132,11 @@ class SignUpInSide extends React.Component {
                     id="firstName"
                     label="First Name"
                     autoFocus
+                    onChange={e => this.changevalueFirstName(e)}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
-                    onChange={e => this.changevalueLastName(e)}
                     variant="outlined"
                     required
                     fullWidth
@@ -151,11 +144,11 @@ class SignUpInSide extends React.Component {
                     label="Last Name"
                     name="lastName"
                     autoComplete="lname"
+                    onChange={e => this.changevalueLastName(e)}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    onChange={e => this.changevalueEmail(e)}
                     variant="outlined"
                     required
                     fullWidth
@@ -163,11 +156,11 @@ class SignUpInSide extends React.Component {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
+                    onChange={e => this.changevalueEmail(e)}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    onChange={e => this.changevaluePassword(e)}
                     variant="outlined"
                     required
                     fullWidth
@@ -176,11 +169,11 @@ class SignUpInSide extends React.Component {
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    onChange={e => this.changevaluePassword(e)}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    onChange={e => this.changevalueDescription(e)}
                     variant="outlined"
                     required
                     fullWidth
@@ -190,18 +183,19 @@ class SignUpInSide extends React.Component {
                     type="text"
                     id="text"
                     autoComplete="current-password"
+                    onChange={e => this.changevalueDescription(e)}
                   />
                 </Grid>
 
                 <Grid item xs={12}>
                   <TextField
-                    onChange={e => this.changevalueAvatar(e)}
                     variant="outlined"
                     required
                     fullWidth
                     name="Upload Picture"
                     type="file"
                     id="file"
+                    onChange={e => this.addFile(e)}
                   />
                 </Grid>
               </Grid>

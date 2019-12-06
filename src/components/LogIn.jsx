@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Avatar,
   Button,
   CssBaseline,
   TextField,
@@ -8,12 +7,10 @@ import {
   Checkbox,
   Link,
   Grid,
-  Box,
-  Typography,
   Container
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
+import axios from "axios";
 
 const useStyles = theme => ({
   "@global": {
@@ -48,9 +45,36 @@ const useStyles = theme => ({
   }
 });
 
-const classes = withStyles();
-
 class Login extends React.Component {
+  state = {
+    email: "",
+    password: ""
+  };
+
+  sendInputToState = (e, input) => {
+    let state = this.state;
+    state[input] = e.target.value;
+    this.setState({ state });
+  };
+
+  login = e => {
+    e.preventDefault();
+    console.log(this.props.history);
+    if (this.state.email && this.state.password) {
+      console.log("about to log in");
+      axios
+        .post(`${process.env.REACT_APP_API}/login`, this.state)
+        .then(res => {
+          console.log({ res });
+          if (res.data.token) {
+            localStorage.setItem("token", res.data.token);
+            this.props.history.push("/");
+          }
+        })
+        .catch(err => console.log(err));
+    }
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -61,6 +85,7 @@ class Login extends React.Component {
             className={classes.form}
             noValidate
             style={{ backgroundColor: "rgba(255, 255, 255, 0.90)" }}
+            onSubmit={this.login}
           >
             <img
               src="https://github.com/dazdazah/3ptriov1/blob/master/img/logo-login.png?raw=true"
@@ -69,7 +94,6 @@ class Login extends React.Component {
               padding="30"
               className={classes.logo}
             />
-
             <TextField
               variant="outlined"
               margin="normal"
@@ -80,6 +104,9 @@ class Login extends React.Component {
               name="email"
               autoComplete="email"
               autoFocus
+              type="email"
+              value={this.state.email}
+              onChange={e => this.sendInputToState(e, "email")}
             />
             <TextField
               variant="outlined"
@@ -91,6 +118,9 @@ class Login extends React.Component {
               type="password"
               id="password"
               autoComplete="current-password"
+              type="password"
+              value={this.state.password}
+              onChange={e => this.sendInputToState(e, "password")}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -113,7 +143,7 @@ class Login extends React.Component {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/SignUpInSide" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
