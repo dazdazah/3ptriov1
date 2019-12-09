@@ -69,27 +69,25 @@ class Profile extends React.Component {
                     style={{ height: 200, width: 200, marginWidth: 50 }}
                   ></Avatar>
 
-                  <Box ml={2}>
-                    <Typography>{this.state.user.firstName}</Typography>
+                  <Box ml={5}>
+                    <CardContent>
+                      <h1>
+                        {this.state.user.firstName} {this.state.user.lastName}
+                      </h1>
+                      <Typography>{this.state.user.description}</Typography>
+                      <Button
+                        size="big"
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        style={{ background: "#E83350", marginTop: "20px" }}
+                      >
+                        Connect
+                      </Button>
+                    </CardContent>
                   </Box>
                 </Box>
-              </main>
-              <main className={classes.content}>
-                <CardContent>
-                  <Typography>{this.state.user.description}</Typography>
-                </CardContent>
-              </main>
-              <main className={classes.content}>
-                <Button
-                  size="big"
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                  style={{ background: "#E83350" }}
-                >
-                  Connect
-                </Button>
               </main>
             </Grid>
           </Paper>

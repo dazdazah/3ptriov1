@@ -1,6 +1,13 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { Box, AppBar, Typography, Container, Grid } from "@material-ui/core";
+import {
+  Box,
+  AppBar,
+  Typography,
+  Container,
+  Grid,
+  CardContent
+} from "@material-ui/core";
 import CardAvatar from "./CardAvatar.jsx";
 import Nav from "./Nav.jsx";
 import Cards from "./Cards.jsx";
@@ -64,24 +71,28 @@ class Trips extends React.Component {
         <main className={classes.content}>
           <div className={classes.toolbar} />
 
-          <Typography>
-            <h3>Trips Posted</h3>
-          </Typography>
+          <CardContent>
+            <Typography style={{ color: "#E83350" }}>
+              <h2>Browse Trips Posted</h2>
+            </Typography>
 
-          <Box display="flex" flexWrap="wrap">
-            {this.state.trips.map(trip => (
-              <Cards trip={trip} key={trip._id} />
-            ))}
-          </Box>
+            <Box display="flex" flexWrap="wrap">
+              {this.state.trips.map(trip => (
+                <Cards trip={trip} key={trip._id} />
+              ))}
+            </Box>
+          </CardContent>
 
-          <Typography>
-            <h3>Travelers who needs travel buddies</h3>
-          </Typography>
-          <Box display="flex" m={2}>
-            {this.state.users.map(user => (
-              <CardAvatar user={user} key={user._id} />
-            ))}
-          </Box>
+          <CardContent>
+            <Typography style={{ color: "#E83350" }}>
+              <h2>Travelers who needs travel buddies</h2>
+            </Typography>
+            <Box display="flex" m={2}>
+              {this.state.users.map(user => (
+                <CardAvatar user={user} key={user._id} />
+              ))}
+            </Box>
+          </CardContent>
         </main>
       </div>
     );

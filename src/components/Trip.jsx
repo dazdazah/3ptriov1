@@ -64,10 +64,9 @@ class Trip extends React.Component {
           <Grid>
             <main className={classes.content}>
               <div className={classes.toolbar} />
-              <img src={this.state.trip.picture} />
-              <CardMedia
-                className={classes.media}
-                image={this.state.trip.picture}
+              <img
+                src={this.state.trip.picture}
+                style={{ width: 800, marginWidth: 50 }}
               />
             </main>
 
