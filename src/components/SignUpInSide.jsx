@@ -82,7 +82,7 @@ class SignUpInSide extends React.Component {
     }
     if (this.state.password) {
       axios
-        .post(`${process.env.REACT_APP_API}`, data)
+        .post(`${process.env.REACT_APP_API}/signup`, data)
         .then(res => {
           if (res.data) {
             console.log("yay");

@@ -81,7 +81,7 @@ class CreatePostTrip extends React.Component {
     }
 
     axios
-      .post(`${process.env.REACT_APP_API}`, data, {
+      .post(`${process.env.REACT_APP_API}/posttrip`, data, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       })
       .then(res => {
