@@ -81,12 +81,6 @@ class Trip extends React.Component {
       )
       .then(res => {
         console.log("res => ", res.data);
-
-        // let user = res.data.user;
-        // let token = res.data.token;
-        // this.setState({ user, token });
-        // localStorage.setItem("token", token);
-        // this.getData();
       })
       .catch(err => {
         console.log(err);
@@ -114,6 +108,11 @@ class Trip extends React.Component {
             <main className={classes.content}>
               <CardContent>
                 <Typography>
+                  <Avatar
+                    alt="profile"
+                    src={this.state.users.avatar}
+                    style={{ height: 80, width: 80, marginWidth: 50 }}
+                  ></Avatar>
                   <h1>{this.state.trip.title}</h1>
                 </Typography>
               </CardContent>

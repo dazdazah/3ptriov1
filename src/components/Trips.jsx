@@ -70,9 +70,13 @@ class Trips extends React.Component {
         // content cards
         <main className={classes.content}>
           <div className={classes.toolbar} />
+          <img
+            src="https://github.com/dazdazah/3ptriov1/blob/master/hero2.png?raw=true"
+            style={{ width: 900, marginWidth: 30 }}
+          />
 
           <CardContent>
-            <Typography style={{ color: "#E83350" }}>
+            <Typography style={{ color: "#E83350", letterSpacing: "1" }}>
               <h2>Browse Trips Posted</h2>
             </Typography>
 
@@ -84,7 +88,7 @@ class Trips extends React.Component {
           </CardContent>
 
           <CardContent>
-            <Typography style={{ color: "#E83350" }}>
+            <Typography style={{ color: "#E83350", letterSpacing: "-1" }}>
               <h2>Travelers who needs travel buddies</h2>
             </Typography>
             <Box display="flex" m={2}>

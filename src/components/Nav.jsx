@@ -27,15 +27,15 @@ const useStyles = theme => ({
   },
   search: {
     position: "relative",
+
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     "&:hover": {
       backgroundColor: fade(theme.palette.common.white, 0.25)
     },
-    margin: "2",
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(3),
       width: "auto"
     }
   },
@@ -118,7 +118,7 @@ class Nav extends React.Component {
               </Link>
             </Typography>
             <div className={classes.search}>
-              <div className={classes.searchIcon} style={{ marginLeft: "10" }}>
+              <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
               <InputBase
