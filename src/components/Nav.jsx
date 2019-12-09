@@ -106,9 +106,7 @@ class Nav extends React.Component {
               className={classes.menuButton}
               color="inherit"
               aria-label="menu"
-            >
-              <MenuIcon />
-            </IconButton>
+            ></IconButton>
             <Typography variant="h6" className={classes.title}>
               <Link href="/trips">
                 <img
@@ -120,7 +118,7 @@ class Nav extends React.Component {
               </Link>
             </Typography>
             <div className={classes.search}>
-              <div className={classes.searchIcon} style={{ margin: "10" }}>
+              <div className={classes.searchIcon} style={{ marginLeft: "10" }}>
                 <SearchIcon />
               </div>
               <InputBase

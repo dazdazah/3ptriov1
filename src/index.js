@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import Routes from "./Routes";
 import * as serviceWorker from "./serviceWorker";
+window.React1 = require("react");
 
 ReactDOM.render(<Routes />, document.getElementById("root"));
 

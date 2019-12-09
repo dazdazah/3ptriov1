@@ -16,8 +16,15 @@ import CardTravelIcon from "@material-ui/icons/CardTravel";
 import axios from "axios";
 
 const useStyles = theme => ({
+  title: {
+    color: "gray",
+    letterSpacing: -1,
+    fontSize: 20,
+    fontWeight: "bold"
+  },
+
   card: {
-    maxWidth: 300,
+    maxWidth: 400,
     margin: 5
   },
   media: {
@@ -60,9 +67,12 @@ class Cards extends React.Component {
               className={classes.bigAvatar}
             />
           }
+          classes={{
+            title: classes.title
+          }}
           action={<IconButton aria-label="settings"></IconButton>}
           title={this.state.trip.title}
-          subheader="Dec 18, 2019"
+          subheader={this.state.trip.date}
         />
 
         <CardMedia className={classes.media} image={this.state.trip.picture} />

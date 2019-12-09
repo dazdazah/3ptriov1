@@ -16,11 +16,9 @@ import SideBar from "./SideBar.jsx";
 
 const useStyles = theme => ({
   root: {
-    padding: theme.spacing(2, 3),
     display: "flex"
   },
   avatar: {
-    margin: theme.spacing(2, 1),
     maxWidth: 350
   },
   content: {

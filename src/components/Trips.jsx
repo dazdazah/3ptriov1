@@ -1,6 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { Box, AppBar, Typography, Container } from "@material-ui/core";
+import { Box, AppBar, Typography, Container, Grid } from "@material-ui/core";
 import CardAvatar from "./CardAvatar.jsx";
 import Nav from "./Nav.jsx";
 import Cards from "./Cards.jsx";
@@ -16,10 +16,6 @@ const useStyles = theme => ({
     zIndex: theme.zIndex.drawer + 1
   },
 
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3)
-  },
   toolbar: theme.mixins.toolbar
 });
 
@@ -67,17 +63,16 @@ class Trips extends React.Component {
         // content cards
         <main className={classes.content}>
           <div className={classes.toolbar} />
+
           <Typography>
             <h3>Trips Posted</h3>
           </Typography>
 
-          <div className={classes.toolbar}>
-            <Box display="flex" m={2}>
-              {this.state.trips.map(trip => (
-                <Cards trip={trip} key={trip._id} />
-              ))}
-            </Box>
-          </div>
+          <Box display="flex" flexWrap="wrap">
+            {this.state.trips.map(trip => (
+              <Cards trip={trip} key={trip._id} />
+            ))}
+          </Box>
 
           <Typography>
             <h3>Travelers who needs travel buddies</h3>
