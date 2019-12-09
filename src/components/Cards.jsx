@@ -72,7 +72,7 @@ class Cards extends React.Component {
           }}
           action={<IconButton aria-label="settings"></IconButton>}
           title={this.state.trip.title}
-          subheader={this.state.trip.date}
+          subheader={this.state.trip.dates}
         />
 
         <CardMedia className={classes.media} image={this.state.trip.picture} />
