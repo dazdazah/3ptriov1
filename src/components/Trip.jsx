@@ -81,6 +81,7 @@ class Trip extends React.Component {
       )
       .then(res => {
         console.log("res => ", res.data);
+        this.setState({ trip: res.data });
       })
       .catch(err => {
         console.log(err);
@@ -110,7 +111,7 @@ class Trip extends React.Component {
                 <Typography>
                   <Avatar
                     alt="profile"
-                    src={this.state.users.avatar}
+                    src={this.state.trip.leader}
                     style={{ height: 80, width: 80, marginWidth: 50 }}
                   ></Avatar>
                   <h1>{this.state.trip.title}</h1>
