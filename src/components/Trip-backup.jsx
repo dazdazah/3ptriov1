@@ -56,43 +56,7 @@ class Trip extends React.Component {
         this.setState({ trip: res.data });
       })
       .catch(err => console.log({ err }));
-
-    // User who posted
-    axios
-      .get(`${process.env.REACT_APP_API}/users`)
-      .then(response => {
-        console.log({ users: response.data });
-        this.setState({ users: response.data });
-      })
-      .catch(error => {
-        console.log({ error });
-      });
   }
-  // User who joined
-  changeOnJoin = e => {
-    e.preventDefault();
-    axios
-      .patch(
-        `${process.env.REACT_APP_API}/trip/${this.props.match.params.id}`,
-        {},
-        {
-          headers: { authorization: `Bearer ${localStorage.getItem("token")}` }
-        }
-      )
-      .then(res => {
-        console.log("res => ", res.data);
-
-        // let user = res.data.user;
-        // let token = res.data.token;
-        // this.setState({ user, token });
-        // localStorage.setItem("token", token);
-        // this.getData();
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
   render() {
     const { classes } = this.props;
     return (
@@ -127,9 +91,8 @@ class Trip extends React.Component {
                   color="primary"
                   className={classes.submit}
                   style={{ background: "#E83350" }}
-                  onClick={e => this.changeOnJoin(e)}
                 >
-                  I want a joint
+                  I want to join
                 </Button>
               </CardContent>
 
