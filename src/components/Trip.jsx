@@ -125,7 +125,7 @@ class Trip extends React.Component {
                   style={{ background: "#E83350" }}
                   onClick={e => this.changeOnJoin(e)}
                 >
-                  I want a join
+                  I want to join
                 </Button>
               </CardContent>
 

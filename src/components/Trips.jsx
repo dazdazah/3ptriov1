@@ -73,7 +73,7 @@ class Trips extends React.Component {
           <div className={classes.toolbar} />
           <Grid>
             <img
-              src="https://github.com/dazdazah/3ptriov1/blob/master/hero1.png?raw=true"
+              src="https://github.com/dazdazah/3ptriov1/blob/master/hero0.png?raw=true"
               style={{ width: 890 }}
             />
           </Grid>
