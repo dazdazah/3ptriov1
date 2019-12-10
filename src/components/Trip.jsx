@@ -43,7 +43,8 @@ const useStyles = theme => ({
 class Trip extends React.Component {
   state = {
     trip: {
-      users: []
+      users: [],
+      leader: ""
     }
   };
   componentWillMount() {
@@ -112,16 +113,6 @@ class Trip extends React.Component {
 
             <main className={classes.content}>
               <CardContent>
-                <Typography>
-                  <Avatar
-                    alt="profile"
-                    src={this.state.trip.leader}
-                    style={{ height: 80, width: 80, marginWidth: 50 }}
-                  ></Avatar>
-                  <h1>{this.state.trip.title}</h1>
-                </Typography>
-              </CardContent>
-              <CardContent>
                 <Typography>{this.state.trip.description}</Typography>
                 <div className={classes.toolbar} />
                 <Button
@@ -133,27 +124,39 @@ class Trip extends React.Component {
                   style={{ background: "#E83350" }}
                   onClick={e => this.changeOnJoin(e)}
                 >
-                  I want a joint
+                  I want a join
                 </Button>
               </CardContent>
 
-              <Box display="flex" m={2}>
-                {this.state.trip.users.map(user => (
-                  <Paper style={{ height: 150, width: 150, margin: 50 }}>
-                    <Grid>
-                      <Avatar
-                        display="flex"
-                        alt="profile"
-                        src={user.avatar}
-                        style={{ height: 80, width: 80 }}
-                      ></Avatar>
-                      <Typography>
-                        {user.firstName} is joining this trip
-                      </Typography>
-                    </Grid>
-                  </Paper>
-                ))}
-              </Box>
+              <CardContent>
+                <Typography style={{ color: "#E83350", letterSpacing: "1" }}>
+                  <h2>Travellers who are joining</h2>
+                </Typography>
+                <Box display="flex">
+                  {this.state.trip.users.map(user => (
+                    <Paper
+                      style={{
+                        height: 200,
+                        width: 150,
+                        margin: 10,
+                        padding: 10
+                      }}
+                    >
+                      <Grid>
+                        <Avatar
+                          display="flex"
+                          alt="profile"
+                          src={user.avatar}
+                          style={{ height: 80, width: 80 }}
+                        ></Avatar>
+                        <Typography>
+                          <h3>{user.firstName}</h3>is joining this trip
+                        </Typography>
+                      </Grid>
+                    </Paper>
+                  ))}
+                </Box>
+              </CardContent>
             </main>
           </Grid>
         </Paper>
