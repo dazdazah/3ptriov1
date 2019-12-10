@@ -75,6 +75,7 @@ class Trip extends React.Component {
   // User who joined
   changeOnJoin = e => {
     e.preventDefault();
+    console.log("pathc");
     axios
       .patch(
         `${process.env.REACT_APP_API}/trip/${this.props.match.params.id}`,
@@ -88,9 +89,8 @@ class Trip extends React.Component {
         this.setState({ trip: res.data });
       })
       .catch(err => {
-        console.log(err);
+        console.log({ err });
       });
-    console.log("this.state", this.state);
   };
 
   render() {
