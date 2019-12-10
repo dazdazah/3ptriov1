@@ -89,7 +89,7 @@ class SideBar extends React.Component {
         >
           <div className={classes.toolbar} />
           <Divider />
-          <Link href="/CreatePostTrip">
+          <Link href="/CreatePostTrip" style={{ textDecoration: "none" }}>
             <List style={{ marginTop: "5px", marginBottom: "5px" }}>
               {["Post a Trip"].map(text => (
                 <ListItem button key={text}>

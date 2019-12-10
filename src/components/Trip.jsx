@@ -137,8 +137,8 @@ class Trip extends React.Component {
                   {this.state.trip.users.map(user => (
                     <Paper
                       style={{
-                        height: 200,
-                        width: 150,
+                        height: 250,
+                        width: 250,
                         margin: 10,
                         padding: 10
                       }}
@@ -148,12 +148,36 @@ class Trip extends React.Component {
                           display="flex"
                           alt="profile"
                           src={user.avatar}
-                          style={{ height: 80, width: 80 }}
+                          style={{
+                            height: 80,
+                            width: 80,
+                            marginLeft: 70
+                          }}
                         ></Avatar>
-                        <Typography>
+                        <Typography
+                          style={{
+                            textAlign: "center"
+                          }}
+                        >
                           <h3>{user.firstName}</h3>is joining this trip
                         </Typography>
                       </Grid>
+                      <Button
+                        size="small"
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        style={{
+                          background: "#E83350",
+                          marginLeft: 65,
+                          marginTop: 20,
+                          padding: 5,
+                          textAlign: "center"
+                        }}
+                      >
+                        See Profile
+                      </Button>
                     </Paper>
                   ))}
                 </Box>

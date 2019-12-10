@@ -73,12 +73,20 @@ class Trips extends React.Component {
 
           <img
             src="https://github.com/dazdazah/3ptriov1/blob/master/hero2.png?raw=true"
-            style={{ width: 900, marginWidth: 30, marginTop: 20 }}
+            style={{ width: 1000, marginTop: 20 }}
           />
 
           <CardContent>
-            <Typography style={{ color: "#E83350", letterSpacing: "1" }}>
-              <h2>Browse Trips Posted</h2>
+            <Typography
+              style={{
+                color: "#777E8B",
+                letterSpacing: "1"
+              }}
+            >
+              <Typography style={{ lineHeight: 1, marginBottom: 40 }}>
+                <h2>Browse Trips Posted</h2>
+                Find trip and activities by trip leader on your next trip
+              </Typography>
             </Typography>
 
             <Box display="flex" flexWrap="wrap">
@@ -89,10 +97,18 @@ class Trips extends React.Component {
           </CardContent>
 
           <CardContent>
-            <Typography style={{ color: "#E83350", letterSpacing: "-1" }}>
-              <h2>Travelers who needs travel buddies</h2>
+            <Typography
+              style={{
+                color: "#777E8B",
+                letterSpacing: "0"
+              }}
+            >
+              <Typography style={{ lineHeight: 1, marginBottom: 40 }}>
+                <h2>Travelers who needs travel buddies</h2>
+                Find trip and activities by trip leader on your next trip
+              </Typography>
             </Typography>
-            <Box display="flex" m={2}>
+            <Box display="flex" m={2} flexWrap="wrap">
               {this.state.users.map(user => (
                 <CardAvatar user={user} key={user._id} />
               ))}

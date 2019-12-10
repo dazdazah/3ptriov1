@@ -89,7 +89,11 @@ class Cards extends React.Component {
             <Typography>Interested</Typography>
           </IconButton>
 
-          <Link className="card link" to={`/trip/${this.state.trip._id}`}>
+          <Link
+            className="card link"
+            to={`/trip/${this.state.trip._id}`}
+            style={{ textDecoration: "none" }}
+          >
             <IconButton>
               <CardTravelIcon />
               <Typography>Trip Details</Typography>
