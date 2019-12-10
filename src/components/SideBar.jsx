@@ -26,7 +26,7 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import NativeSelect from "@material-ui/core/NativeSelect";
 
-const drawerWidth = 260;
+const drawerWidth = 230;
 
 const useStyles = theme => ({
   root: {
@@ -41,7 +41,7 @@ const useStyles = theme => ({
   },
 
   formControl: {
-    minWidth: 250
+    minWidth: 100
   },
   focused: {},
   disabled: {},

@@ -6,7 +6,8 @@ import {
   Typography,
   Container,
   Grid,
-  CardContent
+  CardContent,
+  Paper
 } from "@material-ui/core";
 import CardAvatar from "./CardAvatar.jsx";
 import Nav from "./Nav.jsx";
@@ -70,11 +71,16 @@ class Trips extends React.Component {
         // content cards
         <main className={classes.content}>
           <div className={classes.toolbar} />
-
-          <img
-            src="https://github.com/dazdazah/3ptriov1/blob/master/hero2.png?raw=true"
-            style={{ width: 1000, marginTop: 20 }}
-          />
+          <Grid
+            style={{
+              marginLeft: "0"
+            }}
+          >
+            <img
+              src="https://github.com/dazdazah/3ptriov1/blob/master/hero2.png?raw=true"
+              style={{ width: 1000, marginTop: 0, marginLeft: "-2" }}
+            />
+          </Grid>
 
           <CardContent>
             <Typography
