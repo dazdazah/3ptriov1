@@ -55,7 +55,7 @@ class Trip extends React.Component {
     axios
       .get(`${process.env.REACT_APP_API}/trip/${this.props.match.params.id}`)
       .then(res => {
-        console.log({ trip: res.data });
+        console.log("trip >>>", res.data);
         this.setState({ trip: res.data });
       })
       .catch(err => console.log({ err }));
@@ -113,6 +113,7 @@ class Trip extends React.Component {
 
             <main className={classes.content}>
               <CardContent>
+                <h1>{this.state.trip.title}</h1>
                 <Typography>{this.state.trip.description}</Typography>
                 <div className={classes.toolbar} />
                 <Button
