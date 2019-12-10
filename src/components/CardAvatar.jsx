@@ -27,6 +27,10 @@ class CardAvatar extends React.Component {
     users: this.props.user
   };
 
+  componentWillMount() {
+    console.log("this.state.users", this.state.users);
+  }
+
   render() {
     const { classes } = this.props;
     return (

@@ -8,7 +8,8 @@ import {
   Typography,
   Avatar,
   Button,
-  IconButton
+  IconButton,
+  CardHeader
 } from "@material-ui/core";
 
 const useStyles = theme => ({
@@ -24,25 +25,33 @@ const useStyles = theme => ({
 
 class CardJoinAvatar extends React.Component {
   state = {
-    users: this.props.user
+    // users: this.props.user,
+    trip: this.props.user
   };
+  componentWillMount() {
+    console.log("this.props.trip", this.props.trip);
+  }
 
   render() {
     const { classes } = this.props;
     return (
       <Paper className={classes.root}>
         <Grid>
-          <Avatar
-            alt="profile"
-            src={this.state.users.avatar}
-            style={{ height: 80, width: 80, marginWidth: 50 }}
-          ></Avatar>
-          <Box component="span" m={0.2}>
-            <Typography>
-              {this.state.users.firstName} wants to join you
-            </Typography>
-          </Box>
-
+          <CardHeader
+            avatar={
+              <Avatar
+                alt="Remy Sharp"
+                src={this.state.trip.users.avatar}
+                className={classes.bigAvatar}
+              />
+            }
+            classes={{
+              title: classes.title
+            }}
+            action={<IconButton aria-label="settings"></IconButton>}
+            title={this.state.trip.title}
+            subheader={this.state.trip.dates}
+          />
           <Link className="card link" to={`/user/${this.state.users._id}`}>
             <Box component="span" mt={5}>
               <Button

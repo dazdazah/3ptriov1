@@ -10,7 +10,8 @@ import {
   CardMedia,
   Avatar,
   Box,
-  Link
+  Link,
+  CardHeader
 } from "@material-ui/core";
 import axios from "axios";
 import Nav from "./Nav.jsx";
@@ -41,8 +42,9 @@ const useStyles = theme => ({
 
 class Trip extends React.Component {
   state = {
-    trip: [],
-    users: []
+    trip: {
+      users: []
+    }
   };
   componentWillMount() {
     console.log(
@@ -67,6 +69,7 @@ class Trip extends React.Component {
       .catch(error => {
         console.log({ error });
       });
+    console.log("this.state", this.state);
   }
   // User who joined
   changeOnJoin = e => {
@@ -86,6 +89,7 @@ class Trip extends React.Component {
       .catch(err => {
         console.log(err);
       });
+    console.log("this.state", this.state);
   };
 
   render() {
@@ -133,16 +137,23 @@ class Trip extends React.Component {
                 </Button>
               </CardContent>
 
-              <CardContent>
-                <Typography style={{ color: "#E83350" }}>
-                  <h2>Travelers who are interested</h2>
-                </Typography>
-                <Box display="flex" m={2}>
-                  {this.state.users.map(user => (
-                    <CardAvatar user={user} key={user._id} />
-                  ))}
-                </Box>
-              </CardContent>
+              <Box display="flex" m={2}>
+                {this.state.trip.users.map(user => (
+                  <Paper style={{ height: 150, width: 150, margin: 50 }}>
+                    <Grid>
+                      <Avatar
+                        display="flex"
+                        alt="profile"
+                        src={user.avatar}
+                        style={{ height: 80, width: 80 }}
+                      ></Avatar>
+                      <Typography>
+                        {user.firstName} is joining this trip
+                      </Typography>
+                    </Grid>
+                  </Paper>
+                ))}
+              </Box>
             </main>
           </Grid>
         </Paper>
