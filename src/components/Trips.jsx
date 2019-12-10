@@ -71,14 +71,10 @@ class Trips extends React.Component {
         // content cards
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <Grid
-            style={{
-              marginLeft: "0"
-            }}
-          >
+          <Grid>
             <img
-              src="https://github.com/dazdazah/3ptriov1/blob/master/hero2.png?raw=true"
-              style={{ width: 1000, marginTop: 0, marginLeft: "-2" }}
+              src="https://github.com/dazdazah/3ptriov1/blob/master/hero1.png?raw=true"
+              style={{ width: 890 }}
             />
           </Grid>
 
